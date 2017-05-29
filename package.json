@@ -1,0 +1,31 @@
+{
+  "name": "@webwallet/sdk",
+  "version": "0.0.1",
+  "description": "WebWallet SDK client for handling IOUs.",
+  "main": "index.js",
+  "dependencies": {
+    "bs58check": "^2.0.2",
+    "elliptic": "^6.4.0",
+    "joi": "^10.5.0",
+    "json-stable-stringify": "^1.0.1",
+    "ripemd160": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "preinstall": "node scripts/symlink"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/webwallet/sdk.git"
+  },
+  "keywords": [
+    "iou",
+    "webwallet"
+  ],
+  "author": "webwallet.org",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webwallet/iou/issues"
+  },
+  "homepage": "https://github.com/webwallet/iou#readme"
+}
