@@ -7,11 +7,18 @@
     "bs58check": "^2.0.2",
     "elliptic": "^6.4.0",
     "joi": "^10.5.0",
+    "joi-browser": "^13.0.1",
     "json-stable-stringify": "^1.0.1",
     "ripemd160": "^2.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^3.11.0"
+  },
   "scripts": {
+    "webpack": "webpack",
     "preinstall": "node scripts/symlink"
   },
   "repository": {
