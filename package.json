@@ -2,12 +2,12 @@
   "name": "@webwallet/sdk",
   "version": "0.0.2",
   "description": "WebWallet SDK for handling IOUs.",
-  "main": "index.js",
+  "main": "build/index.js",
   "dependencies": {
     "bs58check": "^2.0.2",
     "elliptic": "^6.4.0",
     "joi": "^10.5.0",
-    "joi-browser": "^13.0.1",
+    "joi-browser": "^13.0.1O",
     "json-stable-stringify": "^1.0.1",
     "ripemd160": "^2.0.1"
   },
@@ -18,7 +18,7 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
-    "webpack": "webpack",
+    "build": "webpack",
     "preinstall": "node scripts/symlink"
   },
   "repository": {

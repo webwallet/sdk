@@ -1,11 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
     entry: './index.js',
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'app.bundle.js'
+        filename: 'index.js'
     },
     module: {
         loaders: [
@@ -27,5 +28,11 @@ module.exports = {
     stats: {
         colors: true
     },
-    devtool: 'source-map'
+    devtool: 'source-map',
+    plugins: [
+        new UglifyJsPlugin({
+            test: /\.js($|\?)/i,
+            sourceMap: true
+        })
+    ]
 };
