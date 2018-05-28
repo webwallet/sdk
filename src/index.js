@@ -1,8 +1,8 @@
 'use strict'
 
-const IOU = require('./lib/iou')
-const Keypair = require('./lib/keypair')
-const Address = require('./lib/address')
+const IOU = require('./iou')
+const Keypair = require('./keypair')
+const Address = require('./address')
 
 module.exports = {
   iou: {

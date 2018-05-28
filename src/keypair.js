@@ -11,7 +11,7 @@ const schemes = {
       return {
         scheme: 'ed25519',
         public: keypair.getPublic(compressed, 'hex'),
-        private: keypair.getPrivate('hex')
+        secret: keypair.getPrivate('hex')
       }
     }
   }
