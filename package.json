@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "browser": "lib/webwallet.js",
   "dependencies": {
+    "@webwallet/schemas": "^1.1.1",
     "bs58check": "^2.0.2",
     "elliptic": "^6.4.0",
     "joi": "^10.5.0",

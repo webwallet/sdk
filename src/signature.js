@@ -22,10 +22,10 @@ class Signature {
     let signature = scheme.sign(hash, key.secret)
 
     return {
-      alg: key.scheme,
-      wid: key.wallet,
-      key: key.public,
-      sig: signature
+      scheme: key.scheme,
+      signer: key.signer,
+      public: key.public,
+      string: signature
     }
   }
   static verify() {
