@@ -1,6 +1,6 @@
 {
   "name": "@webwallet/sdk",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "WebWallet SDK for handling IOUs.",
   "main": "src/index.js",
   "browser": "lib/webwallet.js",
