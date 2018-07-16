@@ -14,16 +14,17 @@ let source = sdk.keypair.generate()
 let target = sdk.keypair.generate()
 
 /* Generate wallet addresses from public keys */
-source.wallet = sdk.address.generate({data: source.public}).encode()
-target.wallet = sdk.address.generate({data: source.public}).encode()
+source.signer = sdk.address.generate({data: source.public}).encode()
+target.signer = sdk.address.generate({data: source.public}).encode()
 
 /* Prepare IOU claims */
 let claims = {
-  source: source.wallet,
-  target: target.wallet,
+  domain: 'wallet.example.com',
+  source: source.signer,
+  target: target.signer,
   amount: '100', // must be a big-number string
-  symbol: source.wallet, // source === issuer
-  expires: (/*some date*/).toISOString()
+  symbol: source.signer, // source === issuer
+  expiry: (/*some date*/).toISOString()
 }
 
 /* Write and sign IOU */
