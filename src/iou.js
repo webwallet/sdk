@@ -3,9 +3,9 @@
 const joi = require('joi')
 const crypto = require('crypto')
 const stringify = require('json-stable-stringify')
+const cryptools = require('@webwallet/cryptools')
 const iouSchemas = require('@webwallet/schemas').joi.transaction.iou
 
-const signature = require('./signature')
 const createHash = require('./hashing').create
 
 function random(length = 10) {
@@ -32,13 +32,17 @@ class IOU {
 
     this.meta.signatures = []
   }
-  sign(privateKeys = []) {
-    let signatures = privateKeys.map(key => {
-      if (typeof key !== 'object' || !key.scheme || !key.signer || !key.secret) {
+  sign(keypairs = []) {
+    let signatures = keypairs.map((keypair = {}) => {
+      let { scheme, signer, secret } = keypair
+      if (!scheme || !signer || !secret) {
         return {error: 'missing-key-properties'}
       }
 
-      return signature.generate(this.hash.value, key)
+      let message = this.hash.value
+      let signature = cryptools.signing.create({scheme, message, secret})
+
+      return {scheme, signer, public: keypair.public, string: signature}
     })
 
     this.meta.signatures.push(...signatures)
