@@ -1,12 +1,21 @@
 'use strict'
 
 const elliptic = require('elliptic')
-const ed25519 = new elliptic.ec('ed25519')
+const ecdsaEd25519 = new elliptic.ec('ed25519')
+const eddsaEd25519 = new elliptic.eddsa('ed25519')
 
 const schemes = {
-  ed25519: {
+  'ecdsa-ed25519': {
     sign: (hash, key) => {
-      return ed25519.sign(hash, key).toDER('hex')
+      return ecdsaEd25519.sign(hash, key).toDER('hex')
+    },
+    verify: () => {
+
+    }
+  },
+  'eddsa-ed25519': {
+    sign: (hash, key) => {
+      return eddsaEd25519.sign(hash, key).toHex()
     },
     verify: () => {
 

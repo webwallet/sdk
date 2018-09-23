@@ -1,17 +1,30 @@
 'use strict'
 
 const elliptic = require('elliptic')
-const ed25519 = new elliptic.ec('ed25519')
+const ecdsaEd25519 = new elliptic.ec('ed25519')
+const eddsaEd25519 = new elliptic.eddsa('ed25519')
 
 const schemes = {
-  ed25519: {
-    generate: ({ compressed = false } = {}) => {
-      let keypair = ed25519.genKeyPair()
+  'ecdsa-ed25519': {
+    generate: ({ encoding = 'hex', compressed = false } = {}) => {
+      let keypair = ecdsaEd25519.genKeyPair()
 
       return {
-        scheme: 'ed25519',
-        public: keypair.getPublic(compressed, 'hex'),
-        secret: keypair.getPrivate('hex')
+        scheme: 'ecdsa-ed25519',
+        public: keypair.getPublic(compressed, encoding),
+        secret: keypair.getPrivate(encoding)
+      }
+    }
+  },
+  'eddsa-ed25519': {
+    generate: ({ encoding = 'hex' } = {}) => {
+      let ecdsaPrivate = ecdsaEd25519.genKeyPair().getPrivate(encoding)
+      let eddsaKeypair = eddsaEd25519.keyFromSecret(ecdsaPrivate)
+
+      return {
+        scheme: 'eddsa-ed25519',
+        public: eddsaKeypair.getPublic(encoding),
+        secret: eddsaKeypair.getSecret(encoding)
       }
     }
   }
@@ -19,7 +32,7 @@ const schemes = {
 
 class KeyPair {
   static generate(options = {}) {
-    let {scheme = 'ed25519'} = options
+    let {scheme = 'ecdsa-ed25519'} = options
     if (!schemes[scheme]) throw new Error('invalid-scheme')
 
     return schemes[scheme].generate(options)
