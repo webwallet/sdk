@@ -54,4 +54,6 @@ class IOU {
   }
 }
 
-module.exports = IOU
+module.exports = {
+  write: (claims) => new IOU(claims)
+}

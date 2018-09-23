@@ -1,14 +1,12 @@
 'use strict'
 
-const IOU = require('./iou')
-const Keypair = require('./keypair')
+const iou = require('./iou')
 const Address = require('./address')
+const keypair = require('@webwallet/cryptools').keypair
 
 module.exports = {
-  iou: {
-    write: (claims) => new IOU(claims)
-  },
-  keypair: Keypair,
+  iou: iou,
+  keypair: keypair,
   address: {
     generate: (params) => new Address(params),
     decode: Address.decode,
