@@ -2,7 +2,7 @@
 
 const bs58check = require('bs58check')
 const stringify = require('json-stable-stringify')
-const createHash = require('./hashing').create
+const createHash = require('@webwallet/cryptools').hashing.create
 
 class Address {
   constructor({ data, hash, value, hashalgs = ['sha256', 'ripemd160'] } = {}) {
@@ -26,7 +26,7 @@ class Address {
     let valid = false
 
     try { valid = !!decodeAddress(address, prefix, encoding)}
-    catch(e) { /*invalid address*/ }
+    catch(e) { throw e /*invalid address*/ }
 
     return valid
   }

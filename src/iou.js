@@ -4,9 +4,10 @@ const joi = require('joi')
 const crypto = require('crypto')
 const stringify = require('json-stable-stringify')
 const cryptools = require('@webwallet/cryptools')
-const iouSchemas = require('@webwallet/schemas').joi.transaction.iou
+const schemas = require('@webwallet/schemas')
 
-const createHash = require('./hashing').create
+const iouSchemas = schemas.joi.transaction.iou
+const createHash = cryptools.hashing.create
 
 function random(length = 10) {
   return crypto.randomBytes(length).toString('hex')
