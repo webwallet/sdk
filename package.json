@@ -7,12 +7,9 @@
   "dependencies": {
     "@webwallet/cryptools": "1.1.0",
     "@webwallet/schemas": "1.1.1",
-    "bs58check": "^2.0.2",
-    "elliptic": "^6.4.0",
     "joi": "^10.5.0",
     "joi-browser": "^13.0.1O",
-    "json-stable-stringify": "^1.0.1",
-    "ripemd160": "^2.0.1"
+    "json-stable-stringify": "^1.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
