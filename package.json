@@ -5,15 +5,15 @@
   "main": "src/index.js",
   "browser": "lib/webwallet.js",
   "dependencies": {
-    "@webwallet/cryptools": "1.1.0",
-    "@webwallet/schemas": "1.1.1",
+    "@webwallet/cryptools": "1.2.1",
+    "@webwallet/schemas": "1.2.1",
     "joi": "^10.5.0",
-    "joi-browser": "^13.0.1O",
+    "joi-browser": "13.4.0",
     "json-stable-stringify": "^1.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "7.1.5",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "json-loader": "^0.5.7",
