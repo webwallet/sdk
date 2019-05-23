@@ -4,9 +4,10 @@ const joi = require('joi')
 const crypto = require('crypto')
 const stringify = require('json-stable-stringify')
 const cryptools = require('@webwallet/cryptools')
-const schemas = require('@webwallet/schemas')
+const schemas = require('@webwallet/schemas')('joi')
+const defaultLinker = 'sha256:ripemd160' // todo: import from schemas
 
-const iouSchemas = schemas.joi.transaction.iou
+const iouSchemas = schemas.transaction.input
 const createHash = cryptools.hashing.create
 
 function random(length = 10) {
@@ -29,13 +30,13 @@ class IOU {
 
     this.hash.types = hashalgs
     this.hash.steps = 'stringify:data'
-    this.hash.value = createHash(data, hashalgs, encodings)
+    this.hash.value = createHash({data, algorithms: hashalgs, encodings})
 
     this.meta.signatures = []
   }
   sign(keypairs = []) {
     let signatures = keypairs.map((keypair = {}) => {
-      let { scheme, signer, secret } = keypair
+      let { scheme, signer, secret, linker = defaultLinker } = keypair
       if (!scheme || !signer || !secret) {
         return {error: 'missing-key-properties'}
       }
@@ -43,7 +44,7 @@ class IOU {
       let message = this.hash.value
       let signature = cryptools.signing.create({scheme, message, secret})
 
-      return {scheme, signer, public: keypair.public, string: signature}
+      return {scheme, signer, public: keypair.public, string: signature, linker}
     })
 
     this.meta.signatures.push(...signatures)
