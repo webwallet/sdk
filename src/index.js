@@ -2,10 +2,12 @@
 
 const iou = require('./iou')
 const address = require('./address')
-const keypair = require('@webwallet/cryptools').keypair
+const cryptools = require('@webwallet/cryptools')
+const keypair = cryptools.keypair
 
 module.exports = {
   iou,
+  address,
   keypair,
-  address
+  cryptools
 }
